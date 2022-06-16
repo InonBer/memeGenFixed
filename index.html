@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="">
+    <title>MemeGen</title>
+</head>
+
+<body onload="init()">
+    <div class="main-screen" onclick="OpenMenu()"> </div>
+    <header class="flex align-center justify-between">
+        <img class="logo" src="img/logo1.png" onclick="openGallery()" alt="">
+
+        <ul class="nav-bar flex">
+            <li onclick="openGallery()" data-trans="gallery">Gallery</li>
+            <li><a href="memes.html" data-trans="memes"> Memes </a></li>
+            <li>
+                <select class="leng" onchange="onSetLang(this.value)">
+                <option class="en" value="en">English</option>
+                <option class="he" value="he">עברית</option>
+            </select>
+            </li>
+        </ul>
+        <button class="btn-menu" onclick="OpenMenu()">☰</button>
+    </header>
+
+    <main>
+        <div class="gallery flex align-center">
+            <div class="search-img grid">
+                <div class="search-cell">
+                    <input class="filter-img" type="text" data-trans="search" placeholder="Search" oninput="filterImg(this)">
+                    <img class="search-icon" src="img/ICONS/search.webp" alt="">
+                </div>
+                <div class="searched-show flex justify-center align-center"></div>
+                <button class="btn-gallery more" onclick="moreSearch()" data-trans="Nextpage">Next</button>
+            </div>
+            <div class="imgs-container flex"></div>
+        </div>
+        <div class="editor-container flex justify-center hide">
+            <div class="canvas-container">
+                <canvas class="canvas"></canvas>
+            </div>
+            <div class="editor flex align-center">
+                <input class="text-line" type="text" data-trans="lineText" placeholder="Never be afraid" oninput="setTextIngMeme(this.value)">
+                <div class="buttons-line-1">
+                    <button class="btn" onclick="addLine()" data-trans="addLine" data-title="Add Line">
+                        <img class="icon" src="img/ICONS/add.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="trashLine()" data-trans="deleteLine" data-title="Delete Line">
+                        <img class="icon" src="img/ICONS/trash.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="moveLineUpOrDown(-5)" data-trans="moveUp" data-title="Move Up">
+                        <img class="icon" src="img/ICONS/up.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="moveLineUpOrDown(5)" data-trans="moveDown" data-title="Move Down">
+                        <img class="icon" src="img/ICONS/down.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="switchLine()" data-trans="switchLine" data-title="Switch Lines">
+                        <img class="icon" src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=" ">
+                    </button>
+                </div>
+                <div class="buttons-line-2 flex justify-center">
+                    <button class="btn" onclick="changeSize(2)" data-trans="increaseSize" data-title="Increase Size">
+                        <img class="icon" src="img/ICONS/increase font-icon.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="changeSize(-2)" data-trans="decreaseSize" data-title="Decrease Size">
+                        <img class="icon" src="img/ICONS/decrease font-icon.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="clickChangeColor()" data-trans="textColor" data-title="Text Color">
+                        <img class="icon" src="img/ICONS/paint-board-and-brush.png" alt=" ">
+                    </button>
+                    <input class="color-input" type="color" oninput="changeColor()" hidden>
+                    <button class="btn" onclick="clickChangeColorStroke()" data-trans="strokeColor" data-title="Stroke Color">
+                        <img class="icon " src="img/ICONS/text stroke.png">
+                    </button>
+                    <input class="color-input-stroke" type="color" oninput="changeColorStroke()" hidden>
+                    <button class="btn" onclick="changeAlign('start')" data-trans="alignLeft" data-title="Align Left">
+                        <img class="icon" src="img/ICONS/alignleft.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="changeAlign('center')" data-trans="alignCenter" data-title="Align Center">
+                        <img class="icon" src="img/ICONS/center-text-alignment.png" alt=" ">
+                    </button>
+                    <button class="btn" onclick="changeAlign('end')" data-trans="alignRight" data-title="Align Right">
+                        <img class="icon" src="img/ICONS/alignrght.png" alt=" ">
+                    </button>
+                </div>
+                <div class="stickers">
+                    <img class="sticker" src="img/stickers/sticker1.png"" onclick="selectSticker(this)" alt="">
+                    <img class="sticker" src="img/stickers/sticker2.png" onclick="selectSticker(this)" alt="">
+                    <img class="sticker" src="img/stickers/sticker3.png" onclick="selectSticker(this)" alt="">
+                    <img class="sticker" src="img/stickers/sticker4.png" onclick="selectSticker(this)" alt="">
+                </div>
+                <div class="load-meme flex">
+                    <button class="load save" onclick="saveMeme()" data-trans="save">Save</button>
+                    <button class="load download"><a href="#" onclick="downloadMeme(this)"data-trans="download"> Download</a></button>
+                 
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="js/services/localstorge.js "></script>
+    <script src="js/services/trans.js"></script>
+    <script src="js/services/meme-service.js "></script>
+    <script src="js/memeGenerator.js "></script>
+</body>
+
+</html>
